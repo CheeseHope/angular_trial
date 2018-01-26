@@ -16,7 +16,6 @@
 		{
 			font-size: 20px;
 			height: 100%;
-			border: 10px solid 	#87CEFA;
 			box-sizing:border-box;
 
 		}
@@ -119,7 +118,9 @@
 				console.log(paw);
 				angular.element('button').attr('disabled','disabled');
 				$scope.password = '';
-				alert('你已登录成功！φ(>ω<*) ');
+				$scope.warnLen = false;
+				pwd.length = 0;
+				alert('你已登录成功！φ(>ω<*)');
 			};
 
 			$scope.delete = function($event)
