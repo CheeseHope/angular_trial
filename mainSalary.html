@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.bootcss.com/echarts/4.0.2/echarts.min.js"></script>
+	<title>Salary</title>
+	<link href="mainSalary.css" rel="stylesheet">
+</head>
+<body ng-app="thisMonth">
+	<header>
+		<img src="pop.jpg" alt="head">
+		<div class="id">
+			<span>姓名：popzi</span>
+			<!--<span>职位：前端开发</span>-->
+			<!--<span>已入职时长：</span>-->
+			<span>部门：喵星人研究中心</span>
+		</div>
+	</header>	
+
+	<section>
+		<header class="seg"></header>
+		<div id="thisMonth">
+			<span>吃饭</span>
+			<span>睡觉</span>
+			<span>出游</span>
+			<hr>
+			<hr>
+		</div>	
+	</section>
+
+
+	<section>
+		<header class="seg"></header>
+		<div id="chart"></div>
+		
+	</section>
+	<footer class="seg"></footer>
+	<script type="text/javascript">
+		 // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+		    title: {
+		        text: '喵星人2017-2018年收入明细',
+		    },
+		    tooltip: {
+		        trigger: 'axis'
+		    },
+		    legend: {
+		        data:['最高工资','最低工资']
+		    },
+		    toolbox: {
+		        show: true,
+		        feature: {
+		            dataZoom: {
+		                yAxisIndex: 'none'
+		            },
+		            dataView: {readOnly: false},
+		            magicType: {type: ['line', 'bar']},
+		            restore: {},
+		            saveAsImage: {}
+		        }
+		    },
+		    xAxis:  {
+		        type: 'category',
+		        boundaryGap: false,
+		        data: ['1','2','3','4','5','6','7','8','9','10','11','12']
+		    },
+		    yAxis: {
+		        type: 'value',
+		        axisLabel: {
+		            formatter: '￥{value} '
+		        },
+		        min:7000,
+		        max:12000
+		    },
+		    series: [
+		       
+		        {
+		            name:'月收入',
+		            type:'line',
+		            color:'#E0E0E0',
+		            itemStyle:{
+		                normal:{
+		                    lineStyle:{
+		                        color:'	#87CEFA',
+		                        width:8
+		                    }
+		                }
+		            },
+		            data:[9000, 8602, 9320, 10345, 8568,8122, 9000, 8023, 9563, 9083, 10043, 9123],
+		            markPoint: {
+		                data: [
+		                    {name: '周最低', value:8000, xAxis: 5, yAxis: -1.5}
+		                ]
+		            },
+		            markLine: {
+		                data: [
+		                    {type: 'average', name: '平均值'},
+		                    [{
+		                        symbol: 'none',
+		                        x: '90%',
+		                        yAxis: 'max'
+		                    }, {
+		                        symbol: 'circle',
+		                        label: {
+		                            normal: {
+		                                position: 'start',
+		                                formatter: '最大值'
+		                            }
+		                        },
+		                        type: 'max',
+		                        name: '最高点'
+		                    }]
+		                ]
+		            }
+		        }
+		    ]
+		};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+	</script>
+</body>
+</html>
